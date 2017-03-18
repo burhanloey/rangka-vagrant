@@ -32,6 +32,7 @@ Vagrant.configure("2") do |config|
     appserver1.vm.network "private_network", ip: "192.168.33.4"
     appserver1.vm.synced_folder ".", "/vagrant", type: "nfs"
     appserver1.vm.provision :shell, path: "conf/sbcl/bootstrap.sh"
+    appserver1.vm.provision :shell, path: "conf/sbcl/install-quicklisp.lisp", privileged: false
     appserver1.vm.provider "virtualbox" do |vb|
       vb.memory = "512"
     end
