@@ -9,7 +9,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "loadbalancer" do |loadbalancer|
     loadbalancer.vm.box = "ubuntu/xenial64"
     loadbalancer.vm.network "private_network", ip: "192.168.33.2"
-    loadbalancer.vm.hostname = "luahansiswa.today"
+    loadbalancer.vm.hostname = "learnlisp.today"
     loadbalancer.vm.synced_folder ".", "/vagrant", type: "nfs"
     loadbalancer.vm.provision :shell, path: "conf/nginx/bootstrap.sh"
     loadbalancer.vm.provider "virtualbox" do |vb|
@@ -36,4 +36,14 @@ Vagrant.configure("2") do |config|
       vb.memory = "512"
     end
   end
+
+  # config.vm.define "appserver2" do |appserver2|
+  #   appserver2.vm.box = "ubuntu/xenial64"
+  #   appserver2.vm.network "private_network", ip: "192.168.33.5"
+  #   appserver2.vm.synced_folder ".", "/vagrant", type: "nfs"
+  #   appserver2.vm.provision :shell, path: "conf/sbcl/bootstrap.sh"
+  #   appserver2.vm.provider "virtualbox" do |vb|
+  #     vb.memory = "512"
+  #   end
+  # end
 end
