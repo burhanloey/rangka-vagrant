@@ -11,7 +11,7 @@ Vagrant.configure("2") do |config|
     loadbalancer.vm.network "private_network", ip: "192.168.33.2"
     loadbalancer.vm.hostname = "learnlisp.today"
     loadbalancer.vm.synced_folder ".", "/vagrant", type: "nfs"
-    loadbalancer.vm.provision :shell, path: "conf/nginx/bootstrap.sh"
+    loadbalancer.vm.provision :shell, path: "conf/nginx/bootstrap.sh", privileged: false
     loadbalancer.vm.provider "virtualbox" do |vb|
       vb.memory = "512"
     end
@@ -21,7 +21,7 @@ Vagrant.configure("2") do |config|
     db.vm.box = "ubuntu/xenial64"
     db.vm.network "private_network", ip: "192.168.33.3"
     db.vm.synced_folder ".", "/vagrant", type: "nfs"
-    db.vm.provision :shell, path: "conf/postgres/bootstrap.sh"
+    db.vm.provision :shell, path: "conf/postgres/bootstrap.sh", privileged: false
     db.vm.provider "virtualbox" do |vb|
       vb.memory = "512"
     end
@@ -31,7 +31,7 @@ Vagrant.configure("2") do |config|
     appserver1.vm.box = "ubuntu/xenial64"
     appserver1.vm.network "private_network", ip: "192.168.33.4"
     appserver1.vm.synced_folder ".", "/vagrant", type: "nfs"
-    appserver1.vm.provision :shell, path: "conf/sbcl/bootstrap.sh"
+    appserver1.vm.provision :shell, path: "conf/sbcl/bootstrap.sh", privileged: false
     appserver1.vm.provision :shell, path: "conf/sbcl/install-quicklisp.lisp", privileged: false
     appserver1.vm.provider "virtualbox" do |vb|
       vb.memory = "512"
@@ -42,7 +42,8 @@ Vagrant.configure("2") do |config|
   #   appserver2.vm.box = "ubuntu/xenial64"
   #   appserver2.vm.network "private_network", ip: "192.168.33.5"
   #   appserver2.vm.synced_folder ".", "/vagrant", type: "nfs"
-  #   appserver2.vm.provision :shell, path: "conf/sbcl/bootstrap.sh"
+  #   appserver2.vm.provision :shell, path: "conf/sbcl/bootstrap.sh", privileged: false
+  #   appserver1.vm.provision :shell, path: "conf/sbcl/install-quicklisp.lisp", privileged: false
   #   appserver2.vm.provider "virtualbox" do |vb|
   #     vb.memory = "512"
   #   end
