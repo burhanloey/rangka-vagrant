@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-apt-get update
+sudo apt-get update
 
-apt-get install -y sbcl
+sudo apt-get install -y sbcl
 
-apt-get install -y rlwrap
+sudo apt-get install -y rlwrap
 
-curl https://beta.quicklisp.org/quicklisp.lisp > /tmp/quicklisp.lisp
+sudo curl https://beta.quicklisp.org/quicklisp.lisp > /tmp/quicklisp.lisp
