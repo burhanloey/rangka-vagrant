@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-sudo apt-get update
+apt-get update
 
-sudo apt-get install -y postgresql postgresql-contrib
+apt-get install -y postgresql postgresql-contrib
